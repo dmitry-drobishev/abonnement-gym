@@ -1,0 +1,36 @@
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media (min-width: @desktop) {
+    padding: 0;
+    max-width: 1098px;
+    padding: 0 50px;
+  }
+}
+
+// .container {
+//   width: 100%;
+//   max-width: $container-width + 2 * $container-padding-desktop;
+//   box-sizing: border-box;
+//   padding: 0 $container-padding-desktop;
+//   margin: 0 auto;
+//   position: relative;
+
+//   @include vp-1279 {
+//     padding: 10px;
+//   }
+
+//   @include vp-1439 {
+//     max-width: none;
+//     padding: 0 50px;
+//   }
+
+//   @include vp-1023 {
+//     padding: 0 30px;
+//   }
+
+//   @include vp-767 {
+//     padding: 0 20px;
+//   }
+// }
