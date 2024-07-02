@@ -67,5 +67,15 @@
   background-position: center center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  animation-name: separator;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(1.0,2.0,0,1.0);
+  animation-duration: 1s;
+}
+
+@keyframes separator {
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
 }
 
