@@ -37,6 +37,20 @@
   @media (min-width: @desktop) {
     font-size: 60px;
   }
+
+  &--time-is-over {
+    color: #fd4d35;
+  }
+
+  &--time-is-over-animation {
+    @keyframes time-is-over {
+      0% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
+      50% { background-color: #f7aea5; box-shadow: 0 0 10px #f08273; }
+      100% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
+    }
+
+    animation: time-is-over 1000ms infinite;
+  }
 }
 
 .counter__units {
@@ -72,6 +86,10 @@
   animation-iteration-count: infinite;
   animation-timing-function: cubic-bezier(1.0,2.0,0,1.0);
   animation-duration: 1s;
+
+  &--time-is-over {
+    background-image: url("../img/separator_mode.svg");
+  }
 }
 
 @keyframes separator {
