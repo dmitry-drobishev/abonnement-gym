@@ -1,40 +1,78 @@
-
 //  Функция получает массив объектов с сервера
-
 const getData = () => {
-  // fetch('https://24.javascript.pages.academy/kekstagram/data')
   fetch('https://t-pay.iqfit.app/subscribe/list-test')
     .then((response) => response.json())
     .then((list) => {
-      console.log(list);
       createAbonnementsList(list);
+      createPopupAbonnements(list);
     })
-    .catch(() => {
-      // onFail('Не удалось загрузить данные c сервера.');
-      console.log('Не удалось загрузить данные c сервера.')
+    .catch((error) => {
+      console.log(error);
     });
 };
 
-function createAbonnementsList(list) {
+// Открывает попап
+function openPopup() {
+  document.querySelector(".popup").classList.add("popup--visible");
 
+  document.querySelector(".popup__close-button").addEventListener("click", () => {
+    document.querySelector(".popup").classList.remove("popup--visible");
+  });
+};
+
+// убирает скидку
+function removeDiscount() {
+  const items = document.querySelectorAll(".abonnements__item");
+  for (let item of items) {
+    let oldPrice = item.querySelector(".abonnements__item-old-price");
+    item.querySelector(".abonnements__item-price").textContent = oldPrice.textContent
+    oldPrice.textContent = "";
+  }
+};
+
+
+// заполняет блок абоннементов
+function createAbonnementsList(list) {
   const abonnementsListContainer = document.querySelector('.abonnements__list');
   const abonnement = document.querySelector('#abonnement-item-ispopular').content;
   const abonnementTemplate = abonnement.querySelector(".abonnements__item");
   const abonnementFragment = document.createDocumentFragment();
 
-  console.log(list);
-
-
-  for (let i = 0; i < list.length; i++) {
-    if (element.isPopular = true) {
-      const newAbonnement = abonnementTemplate.cloneNode(true);
-      newAbonnement.getElementsByTagName('input').id = element.price;
-      newAbonnement.getElementsByTagName('label').for = element.price;
-      newAbonnement.querySelector(".abonnements__item-title").textContent = element.name;
-      newAbonnement.querySelector(".abonnements__item-price").textContent = element.price;
-
-      abonnementFragment.appendChild(newAbonnement);
+  for (let element of list) {
+    if (element.isPopular !== true) {
+      continue;
     }
+    const newAbonnement = abonnementTemplate.cloneNode(true);
+    newAbonnement.querySelector('input').setAttribute("id", element.id);
+    newAbonnement.querySelector('label').setAttribute("for", element.id);
+    newAbonnement.querySelector(".abonnements__item-title").textContent = element.name;
+    newAbonnement.querySelector(".abonnements__item-price").textContent = element.price;
+    newAbonnement.querySelector(".abonnements__item-old-price").textContent = element.price * 2;
+
+    abonnementFragment.appendChild(newAbonnement);
+  }
+  abonnementsListContainer.appendChild(abonnementFragment);
+};
+
+// заполняет попап
+function createPopupAbonnements(list) {
+  const abonnementsListContainer = document.querySelector('.popup__abonnements-list');
+  const abonnement = document.querySelector('#abonnement-item-popup').content;
+  const abonnementTemplate = abonnement.querySelector(".popup__abonnements-item");
+  const abonnementFragment = document.createDocumentFragment();
+
+  for (let element of list) {
+    if (element.isDiscount !== true) {
+      continue;
+    }
+    const newAbonnement = abonnementTemplate.cloneNode(true);
+    newAbonnement.getElementsByTagName('input').id = element.id;
+    newAbonnement.getElementsByTagName('label').for = element.id;
+    newAbonnement.querySelector(".popup__abonnements-item-title").textContent = element.name;
+    newAbonnement.querySelector(".popup__abonnements-item-price").textContent = element.price;
+    newAbonnement.querySelector(".popup__abonnements-item-old-price").textContent = element.price * 2;
+
+    abonnementFragment.appendChild(newAbonnement);
   }
   abonnementsListContainer.appendChild(abonnementFragment);
 };
@@ -72,15 +110,14 @@ function start() {
     }
 
     if (remain < 0) {
-      document.querySelector(".popup").classList.add("popup--visible");
+      // document.querySelector(".popup").classList.add("popup--visible");
+
       clearInterval(countdown);
       document.querySelector(".counter__minutes .counter__numbers").textContent = "00";
       document.querySelector(".counter__seconds .counter__numbers").textContent = "00";
 
+      setTimeout(openPopup, 10000);
 
-      document.querySelector(".popup__close-button").addEventListener("click", () => {
-        document.querySelector(".popup").classList.remove("popup--visible");
-      });
      }
   }, 1000);
 }

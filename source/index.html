@@ -71,6 +71,7 @@
                         <p class="abonnements__item-description">Привести тело впорядок 💪🏻</p>
                       </div>
                     </label>
+                    <div class="abonnements__item-sale">30%</div>
                   </li>
 
                   <li class="abonnements__item">
@@ -87,7 +88,7 @@
                     </label>
                   </li>
 
-                  <li class="abonnements__item abonnements__item--all_height">
+                  <li class="abonnements__item abonnements__item--all_width">
                     <input type="radio" id="5990" value="999" name="abonnement">
                     <label for="5990">
                       <div class="abonnements__item-label-content">
@@ -170,10 +171,13 @@
       </form>
     </section>
 
+
+
+<!-- Шаблоны -->
     <template id="abonnement-item-ispopular">
       <li class="abonnements__item">
-        <input class="visually-hidden" type="radio" id="699" value="699" name="abonnement">
-        <label for="699">
+        <input class="visually-hidden" type="radio"  value="699" name="abonnement">
+        <label>
           <div class="abonnements__item-label-content">
             <h3 class="abonnements__item-title">1 неделя</h3>
             <div class="abonnements__item-price-wrapper">
@@ -187,9 +191,9 @@
       </li>
     </template>
 
-    <template>
+    <template id="abonnement-item-popup">
       <li class="popup__abonnements-item">
-        <input class="visually-hidden" type="radio" id="1_week" value="1_week" name="abonnement">
+        <input class="visually-hidden" type="radio" id="1_week" value="1_week" name="popup">
         <label for="1_week">
           <div class="popup__abonnements-item-label-container">
             <h3 class="popup__abonnements-item-title">1 неделя</h3>
