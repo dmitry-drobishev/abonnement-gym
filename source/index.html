@@ -169,6 +169,38 @@
         <button class="btn" type="submit">Начать тренироваться</button>
       </form>
     </section>
-    <script src="./js/scripts.min.js"></script>
+
+    <template id="abonnement-item-ispopular">
+      <li class="abonnements__item">
+        <input class="visually-hidden" type="radio" id="699" value="699" name="abonnement">
+        <label for="699">
+          <div class="abonnements__item-label-content">
+            <h3 class="abonnements__item-title">1 неделя</h3>
+            <div class="abonnements__item-price-wrapper">
+              <p class="abonnements__item-price">699p</p>
+              <span class="abonnements__item-old-price">999р</span>
+            </div>
+            <p class="abonnements__item-description">Чтобы просто начать &#x1F44D</p>
+          </div>
+        </label>
+        <div class="abonnements__item-sale">30%</div>
+      </li>
+    </template>
+
+    <template>
+      <li class="popup__abonnements-item">
+        <input class="visually-hidden" type="radio" id="1_week" value="1_week" name="abonnement">
+        <label for="1_week">
+          <div class="popup__abonnements-item-label-container">
+            <h3 class="popup__abonnements-item-title">1 неделя</h3>
+            <div class="popup__abonnements-item-checkbox"><span class="visually-hidden">чекбокс</span></div>
+            <p class="popup__abonnements-item-price">599р</p>
+            <p class="popup__abonnements-item-old-price">999р</p>
+          </div>
+        </label>
+      </li>
+    </template>
+
+    <script src="./js/script.js"></script>
   </body>
 </html>

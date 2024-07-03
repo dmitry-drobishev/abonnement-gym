@@ -1,54 +1,43 @@
-function square(number) {
-  console.log(number * number);
-}
 
-square(10);
+//  Функция получает массив объектов с сервера
+
+const getData = () => {
+  // fetch('https://24.javascript.pages.academy/kekstagram/data')
+  fetch('https://t-pay.iqfit.app/subscribe/list-test')
+    .then((response) => response.json())
+    .then((list) => {
+      // onSuccess(posts);
+      console.log(list);
+      createAbonnementsList(list);
+    })
+    .catch(() => {
+      // onFail('Не удалось загрузить данные c сервера.');
+      console.log('Не удалось загрузить данные c сервера.')
+    });
+};
+
+function createAbonnementsList(list) {
+
+  const abonnementsListContainer = document.querySelector('.abonnements__list');
+  const abonnement = document.querySelector('#abonnement-item-ispopular').content;
+  const abonnementTemplate = abonnement.querySelector(".abonnements__item");
+  const abonnementFragment = document.createDocumentFragment();
+
+  console.log(list);
 
 
-console.log(101);
-console.log(102);
-console.log(103);
 
+  list.forEach((element) => {
+    const newAbonnement = abonnementTemplate.cloneNode(true);
+    newAbonnement.getElementsByTagName('input').id = element.price;
+    newAbonnement.getElementsByTagName('label').for = element.price;
+    newAbonnement.querySelector(".abonnements__item-title").textContent = element.name;
+    newAbonnement.querySelector(".abonnements__item-price").textContent = element.price;
 
-// на сколько минут ставим таймер
-var count = 5;
-// запущен таймер или нет
-// started = false;
+    abonnementFragment.appendChild(newAbonnement);
+  });
 
-// запуск таймера по кнопке
-function start() {
-  // если таймер уже запущен — выходим из функции
-  // if (started) {return};
-  // запоминаем время нажатия
-  var start_time = new Date();
-  // получаем время окончания таймера
-  var stop_time = start_time.setMinutes(start_time.getMinutes() + count);
+  abonnementsListContainer.appendChild(abonnementFragment);
+};
 
-  // запускаем ежесекундный отсчёт
-  var countdown = setInterval(function() {
-    // текущее время
-    var now = new Date().getTime();
-    // сколько времени осталось до конца таймера
-    var remain = stop_time - now;
-    // переводим миллисекунды в минуты и секунды
-    var min = Math.floor( (remain % (1000 * 60 * 60)) / (1000 * 60) );
-    var sec = Math.floor( (remain % (1000 * 60)) / 1000 );
-    // если значение текущей секунды меньше 10, добавляем вначале ведущий ноль
-    sec = sec < 10 ? "0" + sec : sec;
-    // отправляем значение таймера на страницу в нужный раздел
-    document.querySelector(".counter__minutes .counter__numbers").textContent = min;
-    document.querySelector(".counter__seconds .counter__numbers").textContent = sec;
-    // document.getElementById("timer").innerHTML = min + ":" + sec;
-    // если время вышло
-    if (remain < 0) {
-      // останавливаем отсчёт
-      clearInterval(countdown);
-      // пишем текст вместо цифр
-      document.getElementById("timer").innerHTML = "Всё!";
-     }
-  }, 1000);
-  // помечаем, что таймер уже запущен
-  // started = true;
-}
-
-start();
+getData();
