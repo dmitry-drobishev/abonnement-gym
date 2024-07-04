@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 12px 0;
 
   h2 {
     font-family: @ff-pt-root-ui;
@@ -9,6 +10,7 @@
     font-size: 16px;
     line-height: 130%;
     color: #2d3242;
+    margin: 0;
     margin-right: 22px;
 
     @media (min-width: @desktop) {
@@ -20,7 +22,7 @@
 
 .counter__watch {
   display: flex;
-  gap: 27px;
+  gap: 15px;
   align-items: center;
 }
 
@@ -28,7 +30,7 @@
   font-family: @ff-bebas-neue;
   font-weight: 400;
   font-size: 40px;
-  line-height: 103%;
+  line-height: 40px;
   text-transform: uppercase;
   text-align: center;
   color: #01b9c5;
@@ -44,9 +46,9 @@
 
   &--time-is-over-animation {
     @keyframes time-is-over {
-      0% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
-      50% { background-color: #f7aea5; box-shadow: 0 0 10px #f08273; }
-      100% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
+      0% { color: #fd4d35; }
+      50% { color: #facfca; }
+      100% { color: #fd4d35; }
     }
 
     animation: time-is-over 1000ms infinite;
@@ -82,13 +84,15 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
 
-  animation-name: separator;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(1.0,2.0,0,1.0);
-  animation-duration: 1s;
-
   &--time-is-over {
     background-image: url("../img/separator_mode.svg");
+  }
+
+  &--animation {
+    animation-name: separator;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1.0,2.0,0,1.0);
+    animation-duration: 1s;
   }
 }
 
