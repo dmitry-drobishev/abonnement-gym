@@ -1,7 +1,7 @@
 {
-  "name": "cat-energy-23",
+  "name": "gym-membership",
   "private": true,
-  "description": "Личный проект «Кэт энерджи» от HTML Academy",
+  "description": "gym membership",
   "devDependencies": {
     "@htmlacademy/editorconfig-cli": "1.0.0",
     "autoprefixer": "10.2.5",
@@ -20,7 +20,7 @@
     "gulp-webp": "^4.0.1",
     "postcss": "8.2.8",
     "postcss-csso": "^5.0.1",
-    "stylelint": "13.13.1",
+    "stylelint": "^14.16.1",
     "stylelint-config-htmlacademy": "0.1.10"
   },
   "scripts": {
