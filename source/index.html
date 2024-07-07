@@ -44,59 +44,14 @@
             <section class="abonnements">
               <form action="https://echo.htmlacademy.ru/courses" method="get" target="_blank">
                 <ul class="abonnements__list">
-                  <li class="abonnements__item">
-                    <input class="visually-hidden" type="radio" id="699" value="699" name="abonnement">
-                    <label for="699">
-                      <div class="abonnements__item-label-content">
-                        <h3 class="abonnements__item-title">1 неделя</h3>
-                        <div class="abonnements__item-price-wrapper">
-                          <p class="abonnements__item-price">699p</p>
-                          <span class="abonnements__item-old-price">999р</span>
-                        </div>
-                        <p class="abonnements__item-description">Чтобы просто начать &#x1F44D</p>
-                      </div>
-                    </label>
-                    <div class="abonnements__item-sale">30%</div>
-                  </li>
-
-                  <li class="abonnements__item">
-                    <input type="radio" id="999" value="999" name="abonnement">
-                    <label for="999">
-                      <div class="abonnements__item-label-content">
-                        <h3 class="abonnements__item-title">1 месяц</h3>
-                        <div class="abonnements__item-price-wrapper">
-                          <p class="abonnements__item-price">999p</p>
-                          <span class="abonnements__item-old-price">1690р</span>
-                        </div>
-                        <p class="abonnements__item-description">Привести тело впорядок 💪🏻</p>
-                      </div>
-                    </label>
-                    <div class="abonnements__item-sale">30%</div>
-                  </li>
-
-                  <li class="abonnements__item">
-                    <input type="radio" id="2990" value="999" name="abonnement">
-                    <label for="2990">
-                      <div class="abonnements__item-label-content">
-                        <h3 class="abonnements__item-title">3 месяц</h3>
-                        <div class="abonnements__item-price-wrapper">
-                          <p class="abonnements__item-price">2990p</p>
-                          <span class="abonnements__item-old-price">5990р</span>
-                        </div>
-                        <p class="abonnements__item-description">Изменить образ жизни 🔥</p>
-                      </div>
-                    </label>
-                    <div class="abonnements__item-sale">50%</div>
-                  </li>
-
                   <li class="abonnements__item abonnements__item--all_width">
                     <input type="radio" id="5990" value="999" name="abonnement">
                     <label for="5990">
                       <div class="abonnements__item-label-content">
                         <h3 class="abonnements__item-title">навсегда</h3>
                         <div class="abonnements__item-price-wrapper">
-                          <p class="abonnements__item-price">5990p</p>
-                          <span class="abonnements__item-old-price">18900р</span>
+                          <p class="abonnements__item-price"><span class="abonnements__item-price-value">799</span><span>&#8381;</span></p>
+                          <span class="abonnements__item-old-price"><span class="abonnements__item-old-price-value">799</span><span>&#8381;</span></span>
                         </div>
                         <p class="abonnements__item-description">Всегда быть в форме и поддерживать своё здоровье ⭐️</p>
                       </div>
@@ -133,12 +88,11 @@
       </div>
     </main>
 
-
-    <section class="popup">
+    <section class="popup" data-modal="popup">
       <div class="popup__header">
         <span>горящее предложение</span>
         <button class="popup__close-button">
-          <span class="visually-hidden">закрыть попап</span>
+          <span class="visually-hidden" data-close-modal>закрыть попап</span>
         </button>
       </div>
       <h2 class="popup__title">Не упусти свой <span>последний шанс</span></h2>
@@ -148,28 +102,7 @@
 
       <form action="https://echo.htmlacademy.ru/courses" method="get" target="_blank">
         <ul class="popup__abonnements-list">
-          <li class="popup__abonnements-item">
-            <input class="visually-hidden" type="radio" id="1_week" value="1_week" name="abonnement">
-            <label for="1_week">
-              <div class="popup__abonnements-item-label-container">
-                <h3 class="popup__abonnements-item-title">1 неделя</h3>
-                <div class="popup__abonnements-item-checkbox"><span class="visually-hidden">чекбокс</span></div>
-                <p class="popup__abonnements-item-price">599р</p>
-                <p class="popup__abonnements-item-old-price">999р</p>
-              </div>
-            </label>
-          </li>
-          <li class="popup__abonnements-item">
-            <input class="visually-hidden" type="radio" id="1_month" value="1_month" name="abonnement">
-            <label for="1_month">
-              <div class="popup__abonnements-item-label-container">
-                <h3 class="popup__abonnements-item-title">1 месяц</h3>
-                <div class="popup__abonnements-item-checkbox"><span class="visually-hidden">чекбокс</span></div>
-                <p class="popup__abonnements-item-price">799р</p>
-                <p class="popup__abonnements-item-old-price">1690р</p>
-              </div>
-            </label>
-          </li>
+          <!-- popup__abonnements-item -->
         </ul>
         <button class="btn popup__form-button" type="submit">Начать тренироваться</button>
       </form>
@@ -180,13 +113,13 @@
 <!-- Шаблоны -->
     <template id="abonnement-item-ispopular">
       <li class="abonnements__item">
-        <input class="visually-hidden" type="radio"  value="699" name="abonnement">
+        <input class="visually-hidden" type="radio" name="abonnement">
         <label>
           <div class="abonnements__item-label-content">
             <h3 class="abonnements__item-title">1 неделя</h3>
             <div class="abonnements__item-price-wrapper">
-              <p class="abonnements__item-price">699p</p>
-              <span class="abonnements__item-old-price">999р</span>
+              <p class="abonnements__item-price"><span class="abonnements__item-price-value">799</span><span>&#8381;</span></p>
+              <span class="abonnements__item-old-price"><span class="abonnements__item-old-price-value">799</span><span>&#8381;</span></span>
             </div>
             <p class="abonnements__item-description">Чтобы просто начать &#x1F44D</p>
           </div>
@@ -197,18 +130,22 @@
 
     <template id="abonnement-item-popup">
       <li class="popup__abonnements-item">
-        <input class="visually-hidden" type="radio" id="1_week" value="1_week" name="popup">
-        <label for="1_week">
+        <input class="visually-hidden" type="radio" name="popup">
+        <label>
           <div class="popup__abonnements-item-label-container">
-            <h3 class="popup__abonnements-item-title">1 неделя</h3>
+            <h3 class="popup__abonnements-item-title">1 месяц</h3>
             <div class="popup__abonnements-item-checkbox"><span class="visually-hidden">чекбокс</span></div>
-            <p class="popup__abonnements-item-price">599р</p>
-            <p class="popup__abonnements-item-old-price">999р</p>
+            <div class="popup__abonnements-item-price-wrapper">
+              <p class="popup__abonnements-item-price"><span class="popup__abonnements-item-price-value">799</span><span>&#8381;</span></p>
+              <span class="popup__abonnements-item-sale">-50%</span>
+            </div>
+
+            <p class="popup__abonnements-item-old-price"><span class="popup__abonnements-item-old-price-value">799</span><span>&#8381;</span></p>
           </div>
         </label>
       </li>
     </template>
 
-    <script src="./js/script.js"></script>
+    <script src="./js/script.js" type="module"></script>
   </body>
 </html>

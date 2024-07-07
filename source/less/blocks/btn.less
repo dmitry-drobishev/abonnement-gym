@@ -1,7 +1,7 @@
 .btn {
-  width: 100%;
-  padding: 28px;
-  margin-top: 22px;
+  width: auto;
+  // padding: 28px;
+  margin-top: 20px;
   border: none;
   font-family: @ff-rubik;
   font-weight: 500;
@@ -11,11 +11,12 @@
   color: #fff;
   border-radius: 60px;
   background-color: #fd4d35;
+  display: block;
 
-  @media (min-width: @desktop) {
-    width: 281px;
-    margin-top: 50px;
-  }
+  // @media (min-width: @desktop) {
+  //   width: 281px;
+  //   margin-top: 50px;
+  // }
 
   @keyframes glowing {
     0% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
@@ -24,4 +25,9 @@
   }
 
   animation: glowing 1300ms infinite;
+
+
+  &--popup {
+
+  }
 }

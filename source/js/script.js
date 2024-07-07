@@ -1,3 +1,5 @@
+// import { initModals } from "./init-modals";
+
 // Получает массив объектов с сервера
 const getData = () => {
   fetch('https://t-pay.iqfit.app/subscribe/list-test')
@@ -24,9 +26,9 @@ function openPopup() {
 function removeDiscount() {
   const items = document.querySelectorAll(".abonnements__item");
   for (let item of items) {
-    let oldPrice = item.querySelector(".abonnements__item-old-price");
-    item.querySelector(".abonnements__item-price").textContent = oldPrice.textContent
-    oldPrice.textContent = "";
+    let oldPrice = item.querySelector(".abonnements__item-old-price-value");
+    item.querySelector(".abonnements__item-price-value").textContent = oldPrice.textContent
+    item.querySelector(".abonnements__item-old-price").textContent= "";
   }
 };
 
@@ -44,9 +46,10 @@ function createAbonnementsList(list) {
     const newAbonnement = abonnementTemplate.cloneNode(true);
     newAbonnement.querySelector('input').setAttribute("id", element.id);
     newAbonnement.querySelector('label').setAttribute("for", element.id);
+    newAbonnement.querySelector('input').setAttribute("value", element.id);
     newAbonnement.querySelector(".abonnements__item-title").textContent = element.name;
-    newAbonnement.querySelector(".abonnements__item-price").textContent = element.price;
-    newAbonnement.querySelector(".abonnements__item-old-price").textContent = element.price * 2;
+    newAbonnement.querySelector(".abonnements__item-price-value").textContent = element.price;
+    newAbonnement.querySelector(".abonnements__item-old-price-value").textContent = element.price * 2;
 
     abonnementFragment.appendChild(newAbonnement);
   }
@@ -65,11 +68,12 @@ function createPopupAbonnements(list) {
       continue;
     }
     const newAbonnement = abonnementTemplate.cloneNode(true);
-    newAbonnement.querySelector('input').id = element.id;
-    newAbonnement.querySelector('label').for = element.id;
+    newAbonnement.querySelector('input').setAttribute("id", element.id);
+    newAbonnement.querySelector('label').setAttribute("for", element.id);
+    newAbonnement.querySelector('input').setAttribute("value", element.id);
     newAbonnement.querySelector(".popup__abonnements-item-title").textContent = element.name;
-    newAbonnement.querySelector(".popup__abonnements-item-price").textContent = element.price;
-    newAbonnement.querySelector(".popup__abonnements-item-old-price").textContent = element.price * 2;
+    newAbonnement.querySelector(".popup__abonnements-item-price-value").textContent = element.price;
+    newAbonnement.querySelector(".popup__abonnements-item-old-price-value").textContent = element.price * 2;
 
     abonnementFragment.appendChild(newAbonnement);
   }
@@ -99,25 +103,29 @@ function start() {
     document.querySelector(".counter__minutes .counter__numbers").textContent = min;
     document.querySelector(".counter__seconds .counter__numbers").textContent = sec;
 
-    if (remain < 35000) {
+    if (remain < 20000) {
       document.querySelector(".counter__minutes .counter__numbers").classList.add("counter__numbers--time-is-over", "counter__numbers--time-is-over-animation");
       document.querySelector(".counter__seconds .counter__numbers").classList.add("counter__numbers--time-is-over", "counter__numbers--time-is-over-animation");
       document.querySelector(".counter__separator").classList.add("counter__separator--time-is-over")
     }
 
     if (remain < 0) {
-
       document.querySelector(".counter__separator").classList.remove("counter__separator--animation")
       document.querySelector(".counter__minutes .counter__numbers").classList.remove("counter__numbers--time-is-over-animation");
       document.querySelector(".counter__seconds .counter__numbers").classList.remove("counter__numbers--time-is-over-animation");
       document.querySelector(".counter__minutes .counter__numbers").textContent = "00";
       document.querySelector(".counter__seconds .counter__numbers").textContent = "00";
 
-      // removeDiscount();
-      // setTimeout(openPopup, 10000);
-
+      removeDiscount();
+      setTimeout(openPopup, 1000);
+      // initModals();
+      clearInterval(countdown);
      }
   }, 1000);
 }
 
 start();
+
+// window.addEventListener('load', () => {
+//   initModals();
+// });
