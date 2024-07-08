@@ -30,6 +30,16 @@
     font-size: 18px;
 
   }
+
+  &--animation {
+    @keyframes sale {
+      0% { transform: scale(1);}
+      50% { transform: scale(1.5);}
+      100% { transform: scale(1);}
+    }
+
+    animation: sale 1500ms infinite;
+  }
 }
 
 .abonnements__list {
@@ -269,34 +279,6 @@
   }
 }
 
-.abonnements__form-button {
-  width: 100%;
-  padding: 28px;
-  margin-top: 22px;
-  border: none;
-  font-family: @ff-pt-root-ui;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 100%;
-  text-transform: uppercase;
-  color: #fff;
-  border-radius: 60px;
-  background-color: #fd4d35;
-
-  @media (min-width: @desktop) {
-    width: 281px;
-    margin-top: 50px;
-  }
-
-  @keyframes glowing {
-    0% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
-    50% { background-color: #f08273; box-shadow: 0 0 10px #f08273; }
-    100% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
-  }
-
-  animation: glowing 1300ms infinite;
-}
-
 .abonnements__form-button-description {
   margin: 0;
   margin-top: 30px;
@@ -305,5 +287,4 @@
   font-size: 14px;
   line-height: 130%;
   color: #818798;
-
 }

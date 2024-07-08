@@ -1,19 +1,4 @@
 .popup {
-  width: 335px;
-  height: fit-content;
-  box-sizing: border-box;
-  margin: 30px auto ;
-  padding: 50px 18px 18px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid black;
-  background-color: #F5F7F7;
-  // position: absolute;
-  // left: calc((1vp - 335px) / 2);
-  // display: none;
-
-
   position: fixed;
   top: 0;
   right: 0;
@@ -26,9 +11,12 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  transform: scale(0.1);
+  background-color: rgba(@basic-black, 0.4);
+  transform: scale(1.2);
   visibility: hidden;
   opacity: 0;
+
+  transition: opacity 1s;
   pointer-events: none;
 
   -ms-overflow-style: none;
@@ -38,20 +26,52 @@
     display: none;
   }
 
-  transition: all 1s;
+  &__wrapper {
+    position: relative;
 
-  @media (min-width: @desktop) {
-    width: 750px;
-    padding: 0 40px 40px 40px;
-
-  }
-
-  &--preload {
-    transition: none;
-  }
-
-  form {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    min-height: 100%;
+    padding: 60px 40px;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+  }
+
+  &__content {
+    width: 335px;
+    box-sizing: border-box;
+    padding: 50px 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F7F7;
+
+
+    @media (min-width: @desktop) {
+      width: 750px;
+      padding: 0 40px 40px 40px;
+    }
+
+
+    form {
+      width: 100%;
+    }
   }
 }
 

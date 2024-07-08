@@ -1,22 +1,23 @@
 .btn {
   width: auto;
-  // padding: 28px;
+  padding: 28px;
   margin-top: 20px;
   border: none;
   font-family: @ff-rubik;
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
-  // text-transform: uppercase;
+  text-transform: uppercase;
   color: #fff;
   border-radius: 60px;
   background-color: #fd4d35;
   display: block;
+  cursor: pointer;
 
-  // @media (min-width: @desktop) {
-  //   width: 281px;
-  //   margin-top: 50px;
-  // }
+  @media (min-width: @desktop) {
+    width: 281px;
+    margin-top: 50px;
+  }
 
   @keyframes glowing {
     0% { background-color: #fd4d35; box-shadow: 0 0 3px #fd4d35; }
@@ -28,6 +29,30 @@
 
 
   &--popup {
+    width: 100%;
+    padding: 20px;
+    text-transform: none;
 
+    @media (min-width: @desktop) {
+      padding: 20px 40px;
+      margin-left: auto;
+      margin-right: auto;
+      width: auto;
+      max-width: 400px;
+      display: block;
+      margin-top: 15px;
+    }
+  }
+
+  &--abonnements {
+    width: 100%;
+    padding: 28px;
+    margin-top: 22px;
+    border: none;
+    font-family: @ff-pt-root-ui;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    text-transform: uppercase;
   }
 }

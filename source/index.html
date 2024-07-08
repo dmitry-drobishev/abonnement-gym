@@ -74,7 +74,7 @@
                     </label>
                   </div>
 
-                  <button class="abonnements__form-button" type="submit">купить</button>
+                  <button class="btn btn--abonnements" type="submit">купить</button>
 
                   <p class="abonnements__form-button-description">
                     Нажимая «Купить», Пользователь соглашается на автоматическое списание денежных средств по истечению купленного периода.
@@ -89,23 +89,28 @@
     </main>
 
     <section class="popup" data-modal="popup">
-      <div class="popup__header">
-        <span>горящее предложение</span>
-        <button class="popup__close-button">
-          <span class="visually-hidden" data-close-modal>закрыть попап</span>
-        </button>
-      </div>
-      <h2 class="popup__title">Не упусти свой <span>последний шанс</span></h2>
-      <p class="popup__description">Мы знаем, как трудно начать.. <span>Поэтому!</span></p>
-      <p class="popup__promo">Дарим скидку для <span>лёгкого старта&nbsp;🏃‍♂️</span></p>
-      <p class="popup__description">Посмотри что мы для тебя приготовили&nbsp;🔥</p>
+      <div class="popup__wrapper">
+        <div class="popup__overlay" data-close-modal></div>
+        <div class="popup__content">
+          <div class="popup__header">
+            <span>горящее предложение</span>
+            <button class="popup__close-button">
+              <span class="visually-hidden" data-close-modal>закрыть попап</span>
+            </button>
+          </div>
+          <h2 class="popup__title">Не упусти свой <span>последний шанс</span></h2>
+          <p class="popup__description">Мы знаем, как трудно начать.. <span>Поэтому!</span></p>
+          <p class="popup__promo">Дарим скидку для <span>лёгкого старта&nbsp;🏃‍♂️</span></p>
+          <p class="popup__description">Посмотри что мы для тебя приготовили&nbsp;🔥</p>
 
-      <form action="https://echo.htmlacademy.ru/courses" method="get" target="_blank">
-        <ul class="popup__abonnements-list">
-          <!-- popup__abonnements-item -->
-        </ul>
-        <button class="btn popup__form-button" type="submit">Начать тренироваться</button>
-      </form>
+          <form action="https://echo.htmlacademy.ru/courses" method="get" target="_blank">
+            <ul class="popup__abonnements-list">
+              <!-- popup__abonnements-item -->
+            </ul>
+            <button class="btn btn--popup" type="submit">Начать тренироваться</button>
+          </form>
+        </div>
+      </div>
     </section>
 
 
@@ -149,3 +154,9 @@
     <script src="./js/script.js" type="module"></script>
   </body>
 </html>
+
+
+<!-- <div class="modal modal--preload" data-modal="feedback">
+  <div class="modal__wrapper">
+    <div class="modal__overlay" data-close-modal></div>
+    <div class="modal__content modal-question"> -->

@@ -1,4 +1,4 @@
-// import { initModals } from "./init-modals";
+import {CountdownTimer} from "./timer.js"
 
 // Получает массив объектов с сервера
 const getData = () => {
@@ -29,6 +29,7 @@ function removeDiscount() {
     let oldPrice = item.querySelector(".abonnements__item-old-price-value");
     item.querySelector(".abonnements__item-price-value").textContent = oldPrice.textContent
     item.querySelector(".abonnements__item-old-price").textContent= "";
+    item.querySelector(".abonnements__item-sale").remove();
   }
 };
 
@@ -80,52 +81,49 @@ function createPopupAbonnements(list) {
   abonnementsListContainer.appendChild(abonnementFragment);
 };
 
-getData();
 
-const count = 1;
+let time = 30;
+let timer = new CountdownTimer(time);
 
-function start() {
-  const start_time = new Date();
-  // получаем время окончания таймера
-  const stop_time = start_time.setMinutes(start_time.getMinutes() + count);
-  const countdown = setInterval(function() {
-    // текущее время
-    const now = new Date().getTime();
-    // сколько времени осталось до конца таймера
-    const remain = stop_time - now;
-    // переводим миллисекунды в минуты и секунды
-    let min = Math.floor( (remain % (1000 * 60 * 60)) / (1000 * 60) );
-    let sec = Math.floor( (remain % (1000 * 60)) / 1000 );
-    // если значение текущей секунды меньше 10, добавляем вначале ведущий ноль
-    min = min < 10 ? "0" + min : min;
-    sec = sec < 10 ? "0" + sec : sec;
-
-    document.querySelector(".counter__minutes .counter__numbers").textContent = min;
-    document.querySelector(".counter__seconds .counter__numbers").textContent = sec;
-
-    if (remain < 20000) {
-      document.querySelector(".counter__minutes .counter__numbers").classList.add("counter__numbers--time-is-over", "counter__numbers--time-is-over-animation");
-      document.querySelector(".counter__seconds .counter__numbers").classList.add("counter__numbers--time-is-over", "counter__numbers--time-is-over-animation");
-      document.querySelector(".counter__separator").classList.add("counter__separator--time-is-over")
-    }
-
-    if (remain < 0) {
-      document.querySelector(".counter__separator").classList.remove("counter__separator--animation")
-      document.querySelector(".counter__minutes .counter__numbers").classList.remove("counter__numbers--time-is-over-animation");
-      document.querySelector(".counter__seconds .counter__numbers").classList.remove("counter__numbers--time-is-over-animation");
-      document.querySelector(".counter__minutes .counter__numbers").textContent = "00";
-      document.querySelector(".counter__seconds .counter__numbers").textContent = "00";
-
-      removeDiscount();
-      setTimeout(openPopup, 1000);
-      // initModals();
-      clearInterval(countdown);
-     }
-  }, 1000);
+function formatTime(value) {
+  return value < 10 ? `0${value}` : `${value}`;
 }
 
-start();
+timer.setOnTimerStart((counter) => {
+  document.querySelector(".counter__minutes .counter__numbers").textContent = formatTime(counter.minutes);
+  document.querySelector(".counter__seconds .counter__numbers").textContent = formatTime(counter.seconds);
+});
 
-// window.addEventListener('load', () => {
-//   initModals();
-// });
+timer.setOnTimerStop(() => {
+  document.querySelector(".counter__separator").classList.remove("counter__separator--animation")
+  document.querySelector(".counter__minutes .counter__numbers").classList.remove("counter__numbers--time-is-over-animation");
+  document.querySelector(".counter__seconds .counter__numbers").classList.remove("counter__numbers--time-is-over-animation");
+  document.querySelector(".counter__minutes .counter__numbers").textContent = "00";
+  document.querySelector(".counter__seconds .counter__numbers").textContent = "00";
+  document.querySelector(".abonnements__item-sale").classList.remove("abonnements__item-sale--animation");
+
+  removeDiscount();
+  setTimeout(openPopup, 5000)
+  console.log("Bye, timer end");
+});
+
+timer.setOnTimerUpdate((counter) => {
+  document.querySelector(".counter__minutes .counter__numbers").textContent = formatTime(counter.minutes);
+  document.querySelector(".counter__seconds .counter__numbers").textContent = formatTime(counter.seconds);
+
+  if (counter.remain < 20) {
+    document.querySelector(".counter__minutes .counter__numbers").classList.add("counter__numbers--time-is-over", "counter__numbers--time-is-over-animation");
+    document.querySelector(".counter__seconds .counter__numbers").classList.add("counter__numbers--time-is-over", "counter__numbers--time-is-over-animation");
+    document.querySelector(".counter__separator").classList.add("counter__separator--time-is-over")
+
+    const items = document.querySelectorAll(".abonnements__item");
+    for (let item of items) {
+      item.querySelector(".abonnements__item-sale").classList.add("abonnements__item-sale--animation");
+    }
+  }
+  console.log("Wow, timer update", counter);
+});
+
+getData();
+
+timer.start();
