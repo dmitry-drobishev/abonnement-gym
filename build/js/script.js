@@ -1,5 +1,4 @@
 import {CountdownTimer} from "./timer.js"
-import { priceTicker } from "./price-ticker.js";
 
 // Получает массив объектов с сервера
 const getData = () => {
@@ -29,9 +28,10 @@ function removeDiscount() {
   for (let item of items) {
     let oldPrice = item.querySelector(".abonnements__item-old-price-value");
     let price = item.querySelector(".abonnements__item-price-value");
-    item.querySelector(".abonnements__item-price-value").textContent = oldPrice.textContent;
-    // priceTicker(price, price.textContent, oldPrice.textContent )
-    item.querySelector(".abonnements__item-old-price").textContent= "";
+    item.querySelector(".abonnements__item-price-wrapper").classList.add("abonnements__item-price-wrapper--hidden");
+    setTimeout(() => item.querySelector(".abonnements__item-price-value").textContent = oldPrice.textContent, 2000)
+    setTimeout(() => item.querySelector(".abonnements__item-old-price").classList.add("abonnements__item-old-price--hidden"), 2100)
+    setTimeout(() => item.querySelector(".abonnements__item-price-wrapper").classList.remove("abonnements__item-price-wrapper--hidden"), 2500)
     item.querySelector(".abonnements__item-sale").remove();
   }
 };
@@ -85,7 +85,7 @@ function createPopupAbonnements(list) {
 };
 
 
-let time = 15;
+let time = 120;
 let timer = new CountdownTimer(time);
 
 function formatTime(value) {
@@ -106,8 +106,8 @@ timer.setOnTimerStop(() => {
   document.querySelector(".abonnements__item-sale").classList.remove("abonnements__item-sale--animation");
 
   removeDiscount();
-  setTimeout(openPopup, 5000)
-  console.log("Bye, timer end");
+  setTimeout(openPopup, 7000)
+  // console.log("Bye, timer end");
 });
 
 timer.setOnTimerUpdate((counter) => {
@@ -124,7 +124,7 @@ timer.setOnTimerUpdate((counter) => {
       item.querySelector(".abonnements__item-sale").classList.add("abonnements__item-sale--animation");
     }
   }
-  console.log("Wow, timer update", counter);
+  // console.log("Wow, timer update", counter);
 });
 
 getData();

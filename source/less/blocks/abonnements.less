@@ -43,6 +43,7 @@
 }
 
 .abonnements__list {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -54,7 +55,6 @@
   @media (min-width: @desktop) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    // grid-auto-rows: 1fr;
     column-gap: 12px;
     row-gap: 40px;
 
@@ -107,7 +107,6 @@
 }
 
 .abonnements__item-label-content {
-  width: 100%;
   border-radius: 20px;
   padding: 36px 87px 24px 24px;
   background-color: @basic-white;
@@ -122,7 +121,7 @@
   @media (min-width: @desktop) {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    // align-items: flex-start;
     padding: 45px 23px 26px 23px;
     gap: 20px;
     height: 100%;
@@ -156,8 +155,22 @@
   grid-column-end: 3;
   align-self: center;
 
+  opacity: 1;
+  // visibility: visible;
+  transition: opacity 1s;
+
+
   @media (min-width: @desktop) {
     align-self: flex-start;
+  }
+
+  &--hidden {
+    // transition: opacity 2s;
+    // opacity: 0;
+    // transition: visibility 2s;
+    // visibility: hidden;
+    // visibility: hidden;
+    opacity: 0;
   }
 }
 
@@ -187,6 +200,7 @@
   width: fit-content;
   position: relative;
 
+
   &::after {
     position: absolute;
     content: "";
@@ -199,6 +213,11 @@
 
   @media (min-width: @desktop) {
     font-size: 24px;
+  }
+
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
